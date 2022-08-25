@@ -15,7 +15,7 @@
 
 ;;(package-initialize)
 (setq package-selected-packages
-      '(move-text markdown-mode gruvbox-theme auto-package-update typescript-mode))
+      '(move-text markdown-mode gruvbox-theme auto-package-update))
 (package-install-selected-packages t)
 (auto-package-update-maybe)
 (setq auto-package-update-prompt-before-update t)
@@ -25,7 +25,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(menu-bar-mode t)
+ '(menu-bar-mode nil)
  '(package-selected-packages 'nil))
 
 (add-to-list 'load-path "~/.emacs.d/modes/")
@@ -40,3 +40,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(global-set-key (kbd "<kp-7>") 'beginning-of-line)
+(global-set-key (kbd "<kp-1>") 'end-of-line)
