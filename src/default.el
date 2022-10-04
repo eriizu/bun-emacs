@@ -16,9 +16,9 @@
 ;;(package-initialize)
 (setq package-selected-packages
       '(move-text markdown-mode gruvbox-theme auto-package-update))
-(package-install-selected-packages t)
-(auto-package-update-maybe)
-(setq auto-package-update-prompt-before-update t)
+;(package-install-selected-packages t)
+;(auto-package-update-maybe)
+;(setq auto-package-update-prompt-before-update t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
