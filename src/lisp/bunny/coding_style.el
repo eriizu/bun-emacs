@@ -31,7 +31,7 @@
 (defvar bunny-minor-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "C-c C-c") 'comment-or-uncomment-region)
-    (define-key map (kbd "C-c h") 'bunny-insert-header)
+    (define-key map (kbd "C-c h") 'bunny-insert-header2)
     map)
   "bunny-minor-mode keymap.")
 
@@ -53,12 +53,35 @@
 (global-set-key (kbd "C-c <down>") 'shrink-window)
 (global-set-key (kbd "C-c <up>") 'enlarge-window)
 
+(defun bunny-insert-header2 (project-name file-description)
+  "Insert a header at the beginning of the buffer and comment it."
+  (interactive
+   (list (read-string "Project name: ")
+         (read-string "What's this file for? ")))
+  (save-excursion
+    (save-restriction
+      (widen)
+      (goto-char (point-min))
+      (let* ((start (point))
+             (header
+              (concat
+               "E89 Pedagogical & Technical Lab\n"
+               "project:     " project-name "\n"
+               "created on:  "
+               (format-time-string "%Y-%m-%d - %H:%M %z")
+               "\n"
+               "1st author:  " user-full-name " - " user-login-name "\n"
+               "description: " file-description "\n")))
+        (insert header)
+        (comment-region start (point))
+        (insert "\n")))))
+
 ;; C file header
 (defun bunny-insert-header ()
   "Insert a header at the beginning of the file."
+  (interactive)
   (setq project-name (read-string "Project name: "))
   (setq file-description (read-string "What's this file for? "))
-  (interactive)
 
   ;; remembering where the user was before the insertion
   (setq old-point (point))
